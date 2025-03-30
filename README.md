@@ -157,15 +157,6 @@ src/
 └── main.ts              # Point d'entrée de l'application
 ```
 
-## 🔜 Roadmap
-
-- [ ] Système de commentaires sur les recettes
-- [ ] Notation des recettes (étoiles)
-- [ ] Gestion des ingrédients avec unités de mesure
-- [ ] Recherche avancée par ingrédients
-- [ ] Upload d'images pour les recettes
-- [ ] Pagination et filtrage améliorés
-
 ## 📝 License
 
 [MIT](LICENSE)
