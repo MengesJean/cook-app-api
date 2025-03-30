@@ -2,11 +2,11 @@
 
 > **⚠️ API EN COURS DE DÉVELOPPEMENT ⚠️**
 
-API RESTful construite avec NestJS pour l'application Cook App, permettant la gestion de recettes, utilisateurs et authentification.
+API RESTful construite avec NestJS pour la gestion de recettes, utilisateurs et authentification.
 
 ## 📋 À propos
 
-Cette API constitue le backend de l'application Cook App, fournissant toutes les fonctionnalités nécessaires pour gérer les recettes, les utilisateurs et l'authentification. Elle est construite avec NestJS et utilise une architecture modulaire pour faciliter la maintenance et l'évolution.
+Cette API fournit toutes les fonctionnalités nécessaires pour gérer les recettes, les utilisateurs et l'authentification. Elle est construite avec NestJS et utilise une architecture modulaire pour faciliter la maintenance et l'évolution.
 
 ## 🚀 Fonctionnalités principales
 
@@ -96,6 +96,10 @@ Pour plus de détails sur le système d'authentification, consultez la [document
 ### Installation
 
 ```bash
+# Cloner le dépôt
+git clone https://github.com/MengesJean/cook-app.git
+cd cook-app
+
 # Installation des dépendances
 npm install
 ```
@@ -156,6 +160,13 @@ src/
 ├── shared/              # Utilitaires partagés
 └── main.ts              # Point d'entrée de l'application
 ```
+
+## 📚 Documentation
+
+Pour plus de détails :
+
+- [Documentation d'authentification](./src/api/user/auth/README.md)
+- [Application Frontend](https://github.com/MengesJean/cook-app-next)
 
 ## 📝 License
 
