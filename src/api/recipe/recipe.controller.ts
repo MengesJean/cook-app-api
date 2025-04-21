@@ -44,6 +44,11 @@ export class RecipeController {
     return this.recipeService.findOne(+id, req.user);
   }
 
+  @Get(':id/public')
+  findOnePublic(@Request() req, @Param('id') id: string) {
+    return this.recipeService.findOnePublic(+id);
+  }
+
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
   update(

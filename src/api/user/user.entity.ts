@@ -1,3 +1,4 @@
+import { Book } from '@/api/book/entities/book.entity';
 import { Recipe } from '@/api/recipe/entities/recipe.entity';
 import { RefreshToken } from '@/api/user/refresh-token/refresh-token.entity';
 import { Exclude } from 'class-transformer';
@@ -26,6 +27,9 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Recipe, (recipe) => recipe.user)
   public recipes: Recipe[];
+
+  @OneToMany(() => Book, (book) => book.user)
+  public books: Book[];
 
   @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.user)
   public refreshTokens: RefreshToken[];

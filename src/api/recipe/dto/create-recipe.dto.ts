@@ -1,5 +1,12 @@
 import { Transform } from 'class-transformer';
-import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class CreateRecipeDto {
   @IsNotEmpty()
@@ -18,4 +25,9 @@ export class CreateRecipeDto {
   })
   @IsBoolean()
   isPublic?: boolean = false;
+
+  @IsOptional()
+  @IsArray()
+  @IsNumber({}, { each: true })
+  bookIds?: number[];
 }

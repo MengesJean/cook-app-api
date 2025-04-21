@@ -1,9 +1,11 @@
+import { Book } from '@/api/book/entities/book.entity';
 import { User } from '@/api/user/user.entity';
 import {
   BaseEntity,
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -28,6 +30,9 @@ export class Recipe extends BaseEntity {
 
   @Column()
   public user_id: number;
+
+  @ManyToMany(() => Book, (book) => book.recipes)
+  public books: Book[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   public createdAt: Date;
