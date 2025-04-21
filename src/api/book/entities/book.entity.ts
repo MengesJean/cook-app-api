@@ -24,6 +24,9 @@ export class Book extends BaseEntity {
   @Column({ type: 'text', nullable: true })
   public description: string;
 
+  @Column({ type: 'boolean', default: false })
+  public isPublic: boolean;
+
   @ManyToOne(() => User, (user) => user.books)
   @JoinColumn({ name: 'user_id' })
   public user: User;

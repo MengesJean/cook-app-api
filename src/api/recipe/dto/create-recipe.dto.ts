@@ -1,4 +1,6 @@
-import { Transform } from 'class-transformer';
+import { CreateRecipeIngredientDto } from '@/api/recipe-ingredient/dto/create-recipe-ingredient.dto';
+import { CreateStepDto } from '@/api/step/dto/create-step.dto';
+import { Transform, Type } from 'class-transformer';
 import {
   IsArray,
   IsBoolean,
@@ -6,6 +8,7 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  ValidateNested,
 } from 'class-validator';
 
 export class CreateRecipeDto {
@@ -30,4 +33,16 @@ export class CreateRecipeDto {
   @IsArray()
   @IsNumber({}, { each: true })
   bookIds?: number[];
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateRecipeIngredientDto)
+  ingredients?: CreateRecipeIngredientDto[];
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateStepDto)
+  steps?: CreateStepDto[];
 }

@@ -28,7 +28,7 @@ export class BookService {
     book.description = createBookDto.description;
     book.user = user;
     book.user_id = user.id;
-
+    book.isPublic = createBookDto.isPublic;
     return this.repository.save(book);
   }
 
@@ -56,6 +56,7 @@ export class BookService {
   async findPublic(paginationDto: PaginationDto = { page: 1, limit: 10 }) {
     const [items, total] = await this.repository.findAndCount({
       relations: ['user', 'recipes'],
+      where: { isPublic: true },
       skip: (paginationDto.page - 1) * paginationDto.limit,
       take: paginationDto.limit,
       order: { updatedAt: 'DESC' },
@@ -83,6 +84,20 @@ export class BookService {
     return book;
   }
 
+  async findOnePublic(id: number) {
+    const book = await this.repository.findOne({
+      // where recipes are public
+      where: { id, isPublic: true },
+      relations: ['user', 'recipes'],
+    });
+
+    if (!book) {
+      throw new NotFoundException(`Book with ID ${id} not found`);
+    }
+
+    return book;
+  }
+
   async update(id: number, updateBookDto: UpdateBookDto, user: User) {
     const book = await this.findOne(id, user);
 
@@ -96,6 +111,10 @@ export class BookService {
 
     if (updateBookDto.description !== undefined) {
       book.description = updateBookDto.description;
+    }
+
+    if (updateBookDto.isPublic !== undefined) {
+      book.isPublic = updateBookDto.isPublic;
     }
 
     return this.repository.save(book);

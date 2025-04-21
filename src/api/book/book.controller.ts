@@ -34,14 +34,21 @@ export class BookController {
   findAll(@Request() req, @Query() paginationDto: PaginationDto) {
     return this.bookService.findAll(req.user, paginationDto);
   }
+
   @Get('public')
-  findPublic() {
-    return this.bookService.findPublic();
+  findPublic(@Query() paginationDto: PaginationDto) {
+    return this.bookService.findPublic(paginationDto);
   }
+
   @Get(':id')
   @UseGuards(JwtAuthGuard)
   findOne(@Request() req, @Param('id') id: string) {
     return this.bookService.findOne(+id, req.user);
+  }
+
+  @Get(':id/public')
+  findOnePublic(@Request() req, @Param('id') id: string) {
+    return this.bookService.findOnePublic(+id);
   }
 
   @Patch(':id')
